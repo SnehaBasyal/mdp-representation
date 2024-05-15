@@ -14,28 +14,48 @@ To represent a Markov Decision Process(MDP) problem in the following ways.
 
 ### Problem Description
 
-An agent needs to pick product B from a supermarket where there are three products A , B and C
+The agent has to solve a problem statemnt using programming languages available and level up from easy to difficult to achive the goal state of earning a badge.
+
+The agent can either level up or Level down the difficulty.
+
+The probability of the agent being able to or unable to solve the problem given is 60%.
 
 ### State Space
-{Product A , Product B , Product C}
+
+0 - Easy Level
+
+1 - Medium Level
+
+2 - Hard Level
+
+3 - Badge Earned (Goal State)
 
 ### Sample State
-Product A
+
+The agent is in the Medium Level Problem Statement (state=1)
 
 ### Action Space
-[Left , Right , Pick}
+
+0 - Level Down
+
+1 - Level Up
 
 ### Sample Action
-Left
+
+At State=1 (medium) the agent performs 0 (Level Down) and either
+
+60% Levels Down to State=0 (easy)
+
+40% Levels Up to State=2 (hard)
 
 ### Reward Function
-+1 - when an agent move to the right side and pick product B 
 
-0 - Otherwise
+R = {+1 if state = 3  
+      0 otherwise}
 
 ## GRAPHICAL REPRESENTATION
 
-![MDP-REPRESENTATION](RL1.png)
+![MDP-REPRESENTATION](2.png)
 </BR>
 
 ## PYTHON REPRESENTATION:
@@ -44,25 +64,30 @@ Left
 ### Register Number: 212222240101
 
 ```
-P = {
-    0:{
-        0: [(1.0,0,0.0,True)],
-        1: [(1.0,0,0.0,True)]
+
+solver_mdp = {
+    0: {
+        1: [(0.6, 1, 0, False), (0.4, 0, 0, False)],
+        0: [(0.6, 0, 0, False), (0.4, 1, 0, False)]
     },
-    1:{
-        0: [(1.0,0,0.0,True)],
-        1: [(1.0,2,1.0,True)]
+    1: {
+         1: [(0.6, 2, 0, False), (0.4, 0, 0, False)],
+        0: [(0.6, 0, 0, False), (0.4, 2, 0, False)]
     },
-    2:{
-        0: [(1.0,2,0.0,True)],
-        1: [(1.0,2,0.0,True)]
+    2: {
+         1: [(0.6, 3, 1, True), (0.4, 1, 0, False)],
+        0: [(0.6, 1, 0, False), (0.4, 3, 1, True)]
+    },
+    3: {
+         1: [(0.6, 3, 0, True), (0.4, 3, 0, True)],
+        0: [(0.6, 3, 0, True), (0.4, 3, 0, True)]
     }
 }
 ```
 
 ## OUTPUT:
 
-![MDP-REPRESENTATION](RL1I.png)
+![MDP-REPRESENTATION](1.png)
 
 ## RESULT:
 
